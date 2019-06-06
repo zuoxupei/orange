@@ -1,0 +1,9 @@
+{
+  "name": "orange",
+  "description":"web 探索与实践",
+  "author": "xupeizuo",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.14.1"
+  }
+}
