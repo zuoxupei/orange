@@ -1,9 +1,14 @@
 {
   "name": "orange",
-  "description":"web 探索与实践",
+  "description": "web 探索与实践",
   "author": "xupeizuo",
   "private": true,
+  "scripts": {
+    "commit": "git-cz"
+  },
   "devDependencies": {
-    "lerna": "^3.14.1"
+    "husky": "^2.4.0",
+    "lerna": "^3.14.1",
+    "lint-staged": "^8.1.7"
   }
 }
