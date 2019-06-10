@@ -1,7 +1,0 @@
-function tem() {
-
-}
-
-export {
-  tem
-}

@@ -1,5 +1,29 @@
 #!/usr/bin/env node
 const program = require('commander');
 const pkg = require('../package.json');
+const Vh = require('../dist/create/vueCreate').default
+
+program
+.command('vue')
+.alias('v')
+.option('-n,--name <name>','the name of component')
+.option('-t,--ts','use typescript')
+.option('-p,--pug','use pug')
+.description('new component')
+.action(({name,ts,pug})=>{
+  const vc = new Vh({name,ts,pug,projectDir:process.cwd()});
+  vc.create();
+})
+
+program
+.command('react')
+.alias('r')
+.option('-n,--name <name>','the name of component')
+.option('-t,--ts','use typescript')
+.description('new component')
+.action(({name,ts,pug})=>{
+  // cli.reactComponentCreate({name,ts,pug});
+})
+
 
 program.version(pkg.version).parse(process.argv)
