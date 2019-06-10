@@ -1,0 +1,7 @@
+function tem() {
+
+}
+
+export {
+  tem
+}

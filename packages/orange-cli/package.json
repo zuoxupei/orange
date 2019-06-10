@@ -3,12 +3,20 @@
   "version": "0.1.0",
   "description": "orange-cli",
   "main": "index.js",
+  "bin": {
+    "orange": "bin/orange"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "typescript": "^3.4.5"
+    "typescript": "^3.4.5",
+    "tslint": "^5.12.0"
   },
   "author": "xupeizuo",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "handlebars": "^4.1.2",
+    "commander": "^2.20.0"
+  }
 }
