@@ -1,10 +1,11 @@
 <template lang="pug">
 </template>
 
-<% if (iData.ts) { %>
+<% if (locals.ts) { %>
   <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
-  export default class <%= iData.name %> extends Vue {
+  @Component
+  export default class <%= locals.name %> extends Vue {
 
   }
 </script>

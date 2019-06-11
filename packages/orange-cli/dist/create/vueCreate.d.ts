@@ -4,6 +4,7 @@ interface IVueConf {
     ts: boolean;
     projectDir: string;
     pug: boolean;
+    template: string;
 }
 export default class VueCreate extends Creator {
     conf: IVueConf;

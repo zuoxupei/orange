@@ -22,4 +22,53 @@ export default class Creator {
   public sourceRoot(rootPath:string){
     return path.resolve(rootPath);
   }
+
+  private templatePath(...args: string[]):string {
+    let filepath = path.join.apply(path, args)
+    return filepath
+  }
+
+  private destinationRoot (rootPath?: string): string {
+    if (typeof rootPath === 'string') {
+      this._destinationRoot = path.resolve(rootPath)
+      if (!fs.existsSync(rootPath)) {
+        fs.ensureDirSync(rootPath)
+      }
+      process.chdir(rootPath)
+    }
+    return this._destinationRoot || process.cwd()
+  }
+
+  private destinationPath (...args: string[]): string {
+    let filepath = path.join.apply(path, args)
+    if (!path.isAbsolute(filepath)) {
+      filepath = path.join(this.destinationRoot(), filepath)
+    }
+    return filepath
+  }
+
+
+  /**
+   * 生成文件
+   * @param templateUrl 模版路径
+   * @param source 模版名称
+   * @param dest 目标
+   * @param data  数据
+   * @param options 选项
+   */
+  public template(templateUrl: string, source: string, dest: string, data?: object, options?:any) {
+    try{
+      this.fs.copyTpl(
+        this.templatePath(this.templatePath(templateUrl,'templates','vue',source)),
+        this.destinationPath(dest),
+        Object.assign({}, this, data),
+        options
+      )
+      this.fs.commit(()=>{
+        console.log('123')
+      });
+    }catch(e) {
+      console.log(e);
+    }
+  }
 }

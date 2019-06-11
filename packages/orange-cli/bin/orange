@@ -11,7 +11,7 @@ program
 .option('-p,--pug','use pug')
 .description('new component')
 .action(({name,ts,pug})=>{
-  const vc = new Vh({name,ts,pug,projectDir:process.cwd()});
+  const vc = new Vh({name,ts,pug,projectDir:process.cwd(),template:'component'});
   vc.create();
 })
 

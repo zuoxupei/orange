@@ -1,20 +1,15 @@
 <template lang="pug">
 </template>
 
-<% if (locals.ts) { %>
+
   <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
-  export default class <%= locals.name %> extends Vue {
+  @Component
+  export default class mobile extends Vue {
 
   }
 </script>
-<% } else{ %>
-  <script>
-    export default {
-      
-    };
-</script>
-<% } %>
+
 
 <style lang="scss" scoped>
 </style>

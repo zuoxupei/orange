@@ -1,10 +1,12 @@
 import Creator from "./creator";
+const path = require('path')
 
 interface IVueConf {
   name:string,
   ts:boolean,
   projectDir:string,
-  pug:boolean
+  pug:boolean,
+  template:string
 }
  
 export default class VueCreate extends Creator{
@@ -15,13 +17,11 @@ export default class VueCreate extends Creator{
    constructor(options:IVueConf){
      super();
      this.rootPath = this._rootPath;
-     this.conf = Object.assign({
-      projectDir: '',
-      template: '',
-    }, options)
+     this.conf = options;
    }
 
    create() {
-     console.log('start',this.conf);
+     this.template(this.conf.projectDir,
+      this.conf.template,path.join(this.conf.projectDir, this.conf.name+'.vue'),this.conf)
    }
 }
