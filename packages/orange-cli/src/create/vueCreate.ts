@@ -11,6 +11,8 @@ interface IVueConf {
  
 export default class VueCreate extends Creator{
 
+  static templateDir:string = 'vue'
+
    public conf:IVueConf;
    public rootPath: string
 
@@ -21,7 +23,9 @@ export default class VueCreate extends Creator{
    }
 
    create() {
-     this.template(this.conf.projectDir,
-      this.conf.template,path.join(this.conf.projectDir, this.conf.name+'.vue'),this.conf)
+    this.template(VueCreate.templateDir,
+      this.conf.template,path.join(this.conf.projectDir, this.conf.name+'.vue'),this.conf,()=>{
+        console.log('模版创建完成');
+      });
    }
 }

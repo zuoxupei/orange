@@ -11,11 +11,11 @@ export default class Creator {
     private destinationPath;
     /**
      * 生成文件
-     * @param templateUrl 模版路径
+     * @param templateDir 模版文件夹
      * @param source 模版名称
      * @param dest 目标
      * @param data  数据
-     * @param options 选项
+     * @param cb 回调函数
      */
-    template(templateUrl: string, source: string, dest: string, data?: object, options?: any): void;
+    template(templateDir: string, source: string, dest: string, data: object, cb: Function): void;
 }

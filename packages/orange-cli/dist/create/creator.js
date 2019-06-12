@@ -22,7 +22,7 @@ var Creator = /** @class */ (function () {
             args[_i] = arguments[_i];
         }
         var filepath = path.join.apply(path, args);
-        filepath = path.join(this._rootPath, filepath);
+        filepath = path.join(this._rootPath, 'templates', filepath);
         return filepath;
     };
     Creator.prototype.destinationRoot = function (rootPath) {
@@ -44,22 +44,21 @@ var Creator = /** @class */ (function () {
         if (!path.isAbsolute(filepath)) {
             filepath = path.join(this.destinationRoot(), filepath);
         }
-        console.log(filepath, '123123123');
         return filepath;
     };
     /**
      * 生成文件
-     * @param templateUrl 模版路径
+     * @param templateDir 模版文件夹
      * @param source 模版名称
      * @param dest 目标
      * @param data  数据
-     * @param options 选项
+     * @param cb 回调函数
      */
-    Creator.prototype.template = function (templateUrl, source, dest, data, options) {
+    Creator.prototype.template = function (templateDir, source, dest, data, cb) {
         try {
-            this.fs.copyTpl(this.templatePath('templates', 'vue', source), this.destinationPath(dest), Object.assign({}, this, data), options);
+            this.fs.copyTpl(this.templatePath(templateDir, source), this.destinationPath(dest), Object.assign({}, this, data));
             this.fs.commit(function () {
-                console.log('123');
+                cb();
             });
         }
         catch (e) {

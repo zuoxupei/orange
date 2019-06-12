@@ -25,7 +25,7 @@ export default class Creator {
 
   private templatePath(...args: string[]):string {
     let filepath = path.join.apply(path, args);
-    filepath = path.join(this._rootPath,filepath);
+    filepath = path.join(this._rootPath,'templates',filepath);
     return filepath
   }
 
@@ -45,30 +45,28 @@ export default class Creator {
     if (!path.isAbsolute(filepath)) {
       filepath = path.join(this.destinationRoot(), filepath)
     }
-    console.log(filepath,'123123123');
     return filepath
   }
 
 
   /**
    * 生成文件
-   * @param templateUrl 模版路径
+   * @param templateDir 模版文件夹
    * @param source 模版名称
    * @param dest 目标
    * @param data  数据
-   * @param options 选项
+   * @param cb 回调函数
    */
-  public template(templateUrl: string, source: string, dest: string, data?: object, options?:any) {
+  public template(templateDir: string, source: string, dest: string, data: object,cb:Function) {
     try{
       this.fs.copyTpl(
-        this.templatePath('templates','vue',source),
+        this.templatePath(templateDir,source),
         this.destinationPath(dest),
         Object.assign({}, this, data),
-        options
       )
       this.fs.commit(()=>{
-        console.log('123')
-      });
+        cb();
+      })
     }catch(e) {
       console.log(e);
     }

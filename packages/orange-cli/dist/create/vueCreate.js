@@ -24,8 +24,11 @@ var VueCreate = /** @class */ (function (_super) {
         return _this;
     }
     VueCreate.prototype.create = function () {
-        this.template(this.conf.projectDir, this.conf.template, path.join(this.conf.projectDir, this.conf.name + '.vue'), this.conf);
+        this.template(VueCreate.templateDir, this.conf.template, path.join(this.conf.projectDir, this.conf.name + '.vue'), this.conf, function () {
+            console.log('模版创建完成');
+        });
     };
+    VueCreate.templateDir = 'vue';
     return VueCreate;
 }(creator_1.default));
 exports.default = VueCreate;

@@ -7,6 +7,7 @@ interface IVueConf {
     template: string;
 }
 export default class VueCreate extends Creator {
+    static templateDir: string;
     conf: IVueConf;
     rootPath: string;
     constructor(options: IVueConf);
