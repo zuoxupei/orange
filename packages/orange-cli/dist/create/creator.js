@@ -21,14 +21,9 @@ var Creator = /** @class */ (function () {
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        var filepath = path.join.apply(path, args);
+        var filepath = path.join.apply(this._rootPath, args);
         console.log(filepath);
         console.log(this._rootPath);
-        if (!path.isAbsolute(filepath)) {
-            console.log(1111);
-            filepath = path.join(this._rootPath, 'templates', filepath);
-        }
-        console.log(filepath);
         return filepath;
     };
     Creator.prototype.destinationRoot = function (rootPath) {
@@ -63,7 +58,7 @@ var Creator = /** @class */ (function () {
      */
     Creator.prototype.template = function (templateUrl, source, dest, data, options) {
         try {
-            this.fs.copyTpl(this.templatePath(templateUrl, 'templates', 'vue', source), this.destinationPath(dest), Object.assign({}, this, data), options);
+            this.fs.copyTpl(this.templatePath('templates', 'vue', source), this.destinationPath(dest), Object.assign({}, this, data), options);
             this.fs.commit(function () {
                 console.log('123');
             });

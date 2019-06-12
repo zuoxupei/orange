@@ -24,14 +24,9 @@ export default class Creator {
   }
 
   private templatePath(...args: string[]):string {
-    let filepath = path.join.apply(path, args);
+    let filepath = path.join.apply(this._rootPath, args);
     console.log(filepath);
     console.log(this._rootPath);
-    if (!path.isAbsolute(filepath)) {
-      console.log(1111);
-      filepath = path.join(this._rootPath, 'templates', filepath)
-    }
-    console.log(filepath);
     return filepath
   }
 
@@ -67,7 +62,7 @@ export default class Creator {
   public template(templateUrl: string, source: string, dest: string, data?: object, options?:any) {
     try{
       this.fs.copyTpl(
-        this.templatePath(templateUrl,'templates','vue',source),
+        this.templatePath('templates','vue',source),
         this.destinationPath(dest),
         Object.assign({}, this, data),
         options
