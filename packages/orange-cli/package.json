@@ -1,6 +1,6 @@
 {
   "name": "orange-cli",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "orange-cli",
   "main": "index.js",
   "bin": {
@@ -29,5 +29,5 @@
     "mem-fs": "^1.1.3",
     "mem-fs-editor": "^6.0.0"
   },
-  "gitHead": "a0e6b47409b35668d1733868a00cafc9bed14ab3"
+  "gitHead": "90ca584310729b68803c80f5bd7f413bf8b09e94"
 }
