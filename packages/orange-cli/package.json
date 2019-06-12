@@ -1,6 +1,6 @@
 {
-  "name": "orange",
-  "version": "0.1.9",
+  "name": "og-cli",
+  "version": "0.1.10",
   "description": "orange-cli",
   "main": "index.js",
   "bin": {
