@@ -1,6 +1,6 @@
 {
   "name": "orange-core",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "orange-core",
   "main": "index.js",
   "scripts": {
@@ -8,5 +8,5 @@
   },
   "author": "",
   "license": "ISC",
-  "gitHead": "90ca584310729b68803c80f5bd7f413bf8b09e94"
+  "gitHead": "ddc48ba2a174ee00507557d80763c97d05456127"
 }
