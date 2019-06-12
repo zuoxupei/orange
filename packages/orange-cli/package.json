@@ -1,6 +1,6 @@
 {
-  "name": "orange-cli",
-  "version": "0.1.7",
+  "name": "orange",
+  "version": "0.1.9",
   "description": "orange-cli",
   "main": "index.js",
   "bin": {
