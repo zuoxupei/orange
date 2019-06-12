@@ -21,9 +21,8 @@ var Creator = /** @class */ (function () {
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        var filepath = path.join.apply(this._rootPath, args);
-        console.log(filepath);
-        console.log(this._rootPath);
+        var filepath = path.join.apply(path, args);
+        filepath = path.join(this._rootPath, filepath);
         return filepath;
     };
     Creator.prototype.destinationRoot = function (rootPath) {

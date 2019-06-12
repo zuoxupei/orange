@@ -24,9 +24,8 @@ export default class Creator {
   }
 
   private templatePath(...args: string[]):string {
-    let filepath = path.join.apply(this._rootPath, args);
-    console.log(filepath);
-    console.log(this._rootPath);
+    let filepath = path.join.apply(path, args);
+    filepath = path.join(this._rootPath,filepath);
     return filepath
   }
 
