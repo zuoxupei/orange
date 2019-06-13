@@ -1,0 +1,17 @@
+{
+  "name": "orange-property-decorator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf ./dist && npx tsc",
+    "watch": "rm -rf ./dist && npx tsc --watch"
+  },
+  "author": "zuoxupei",
+  "license": "ISC",
+  "devDependencies": {
+    "tslint": "^5.12.0",
+    "typescript": "^3.4.5"
+  }
+}
