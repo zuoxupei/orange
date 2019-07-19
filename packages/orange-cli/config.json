@@ -37,6 +37,10 @@
     {
       "name": "活动时间",
       "key": "activityTime"
+    },
+    {
+      "name": "起止时间",
+      "key": "time"
     }
   ]
 }

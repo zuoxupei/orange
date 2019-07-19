@@ -4,49 +4,42 @@
 </template>
 <% } else { %>
 <template>
-<div class='<%= locals.name %>-box'>
-<% if(locals.configData) {%>
+<div class='<%= locals.name %>-box'><% if(locals.configData) {%>
 <el-card class='search-panel'>
   <el-form
   ref="form"
   :model="form"
   :rules="rules"
-  :inline="true"
-  >
-  <el-col :span=24>
-  <%for(var i=0;i<locals.configData.form.length;i++){%>
-      <% let bean =locals.configData.form[i] %>
+  :inline="true">
+  <el-col :span=24><%for(var i=0;i<locals.configData.form.length;i++){%><% let bean =locals.configData.form[i] %>
       <el-form-item
         label="<%=bean.name%>"
-        prop="<%=bean.key%>">
-        <% if(bean.itemType === 'date') {%>
+        prop="<%=bean.key%>"><% if(bean.itemType === 'date') {%>
         <el-date-picker
           v-model="form.<%=bean.key%>"
           placeholder="请选择<%=bean.name%>"
           type="<%=bean.type%>"
-          />
-        <%}%>
-        <%if(bean.itemType === 'input') {%>
-        <el-input v-model="form.<%=bean.key%>" placeholder="请输入<%=bean.name%>"></el-input>
-        <%}%>
+          /> <%}%><%if(bean.itemType === 'input') {%>
+        <el-input v-model="form.<%=bean.key%>" placeholder="请输入<%=bean.name%>"></el-input><%}%>
         <%if(bean.itemType === 'select') {%>
-        <el-select v-model="form.<%=bean.key%>" placeholder="请选择<%=bean.name%>">
-        <%if(bean.optionValue) {%>
-          <% bean.optionValue.forEach(function(x){ %>
-          <el-option :value='<%=x.value%>'><%=x.label%></el-option>
-          <% }); %>
-        <%}%>
-        </el-select>
-        <%}%>
-      </el-form-item>
-  <%}%>
+        <el-select v-model="form.<%=bean.key%>" placeholder="请选择<%=bean.name%>"><%if(bean.optionValue) {%><% bean.optionValue.forEach(function(x){ %>
+          <el-option :value='<%=x.value%>'><%=x.label%></el-option> <% }); %><%}%>
+        </el-select><%}%>
+      </el-form-item> <%}%>
+      <el-button
+          :loading="isLoading"
+          type="info"
+          @click="search">查询</el-button>
+      <el-button @click="_handleReset">重置</el-button>
   </el-col>
   </el-form>
 </el-card>
-<%}%>
+<grid ref='grid' :remote-method="loadList"><%for(var i=0;i<locals.configData.grid.length;i++){%><% let bean =locals.configData.grid[i] %>
+<el-table-column label="<%=bean.name%>" align="center" prop='<%=bean.key%>'>
+</el-table-column><%}%>
+</grid><%}%>
 </div>
-</template>
-<%}%>
+</template><%}%>
 <% if (locals.ts) { %>
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
@@ -54,47 +47,42 @@
   export default class <%= locals.name %> extends Vue {
 
   }
-</script>
-<% } else{ %>
+</script><% } else{ %>
 <script>
   export default {
     data() {
-      return {
-        <% if(locals.configData) {%>
-        form: {
-          <%for(var i=0;i<locals.configData.form.length;i++){%>
-          <% let bean =locals.configData.form[i] %>
-          <%= bean.key%>:<%if(bean.default){%><%- bean.default%>,<%} else {%>'',<%}%>
-          <%}%> 
+      return {<% if(locals.configData) {%>
+        form: {<%for(var i=0;i<locals.configData.form.length;i++){%><% let bean =locals.configData.form[i] %>
+          <%= bean.key%>:<%if(bean.default){%><%- bean.default%>,<%} else {%>'',<%}%><%}%> 
         },
-        rules: {
-          <%for(var i=0;i<locals.configData.form.length;i++){%>
-          <% let bean =locals.configData.form[i] %>
-          <% if(bean.required) {%> 
+        rules: {<%for(var i=0;i<locals.configData.form.length;i++){%><% let bean =locals.configData.form[i] %><% if(bean.required) {%> <% const isChange = bean.itemType === 'date' %>
           <%= bean.key%>: [
             {
-              required: true, message: '请选择<%=bean.name%>', type: '<%=bean.dataType%>', trigger: 'change'
+              required: true, message: '<%= isChange? '请选择':'请输入'%><%=bean.name%>', type: '<%=bean.dataType%>', trigger: '<%= isChange? 'change':'blur'%>'
             }
-          ],
-          <%}%>
-          <%}%> 
-        }
-         <%}%>
+          ],<%}%><%}%> 
+        },
+        isLoading: false<%}%>
       }
     },
-    mounted () {
-
+    mounted () {<% if(locals.configData) {%>
+      this.search()<%}%>
     },
-    methods: {
-
+    methods: {<% if(locals.configData) {%>
+      _handleReset() {
+        this.$refs.form.resetFields();
+        this.$refs.grid.resetData(this.form);
+      },
+      search() {
+        this.$refs.grid.loadData(this.form);
+      },
+      async loadList(mode) {
+      }, <%}%>
     }
   };
-</script>
-<% } %>
-
+</script><% } %>
 <style lang="<%= locals.css %>" scoped>
-.<%= locals.name %>-box {
-  <% if (locals.isConfig) { %>
+.<%= locals.name %>-box {<% if (locals.isConfig) { %>
   flex: 1; 
   display: flex; 
   flex-direction: column; 
@@ -107,7 +95,6 @@
         float: right;
       }
     }
-  }
-  <% }%> 
+  }<% }%>
 }
 </style>
