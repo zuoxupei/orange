@@ -1,8 +1,54 @@
+<% if (locals.pug) {%>
 <template lang="pug">
+.<%= locals.name %>-box
 </template>
-
+<% } else { %>
+<template>
+<div class='<%= locals.name %>-box'>
+<% if(locals.configData) {%>
+<el-card class='search-panel'>
+  <el-form
+  ref="form"
+  :model="form"
+  :rules="rules"
+  :inline="true"
+  >
+  <el-col :span=24>
+  <%for(var i=0;i<locals.configData.form.length;i++){%>
+      <% let bean =locals.configData.form[i] %>
+      <el-form-item
+        label="<%=bean.name%>"
+        prop="<%=bean.key%>">
+        <% if(bean.itemType === 'date') {%>
+        <el-date-picker
+          v-model="form.<%=bean.key%>"
+          placeholder="请选择<%=bean.name%>"
+          type="<%=bean.type%>"
+          />
+        <%}%>
+        <%if(bean.itemType === 'input') {%>
+        <el-input v-model="form.<%=bean.key%>" placeholder="请输入<%=bean.name%>"></el-input>
+        <%}%>
+        <%if(bean.itemType === 'select') {%>
+        <el-select v-model="form.<%=bean.key%>" placeholder="请选择<%=bean.name%>">
+        <%if(bean.optionValue) {%>
+          <% bean.optionValue.forEach(function(x){ %>
+          <el-option :value='<%=x.value%>'><%=x.label%></el-option>
+          <% }); %>
+        <%}%>
+        </el-select>
+        <%}%>
+      </el-form-item>
+  <%}%>
+  </el-col>
+  </el-form>
+</el-card>
+<%}%>
+</div>
+</template>
+<%}%>
 <% if (locals.ts) { %>
-  <script lang="ts">
+<script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
   @Component
   export default class <%= locals.name %> extends Vue {
@@ -10,12 +56,58 @@
   }
 </script>
 <% } else{ %>
-  <script>
-    export default {
-      
-    };
+<script>
+  export default {
+    data() {
+      return {
+        <% if(locals.configData) {%>
+        form: {
+          <%for(var i=0;i<locals.configData.form.length;i++){%>
+          <% let bean =locals.configData.form[i] %>
+          <%= bean.key%>:<%if(bean.default){%><%- bean.default%>,<%} else {%>'',<%}%>
+          <%}%> 
+        },
+        rules: {
+          <%for(var i=0;i<locals.configData.form.length;i++){%>
+          <% let bean =locals.configData.form[i] %>
+          <% if(bean.required) {%> 
+          <%= bean.key%>: [
+            {
+              required: true, message: '请选择<%=bean.name%>', type: '<%=bean.dataType%>', trigger: 'change'
+            }
+          ],
+          <%}%>
+          <%}%> 
+        }
+         <%}%>
+      }
+    },
+    mounted () {
+
+    },
+    methods: {
+
+    }
+  };
 </script>
 <% } %>
 
-<style lang="scss" scoped>
+<style lang="<%= locals.css %>" scoped>
+.<%= locals.name %>-box {
+  <% if (locals.isConfig) { %>
+  flex: 1; 
+  display: flex; 
+  flex-direction: column; 
+  padding: 0;
+  .search-panel {
+    padding-bottom: 10px;
+    .search-btn {
+      padding: 5px 0;
+      .float-right {
+        float: right;
+      }
+    }
+  }
+  <% }%> 
+}
 </style>

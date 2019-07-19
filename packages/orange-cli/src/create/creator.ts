@@ -4,6 +4,7 @@ import * as memFs from 'mem-fs'
 import * as editor from 'mem-fs-editor'
 import { Editor } from 'mem-fs-editor';
 import { getRootPath } from '../util'
+import { IBase } from '../types';
 
 export default class Creator {
   protected fs: Editor
@@ -48,6 +49,28 @@ export default class Creator {
     return filepath
   }
 
+  protected configPath(args:string) {
+    let filepath = path.join(args)
+    if (!path.isAbsolute(filepath)) {
+      filepath = path.join(process.cwd(), filepath)
+    }
+    return filepath
+  }
+
+  protected initConfig(data:IBase) {
+     if(data.config) {
+       data.isConfig = true;
+       let path =this.configPath(data.config);
+       try {
+        const res = fs.readFileSync(path,{encoding:'utf8'});
+        data.configData = JSON.parse(res);
+       }catch (e) {
+        data.isConfig = false;
+       }
+     }else {
+       data.isConfig = false;
+     }
+  }
 
   /**
    * 生成文件
