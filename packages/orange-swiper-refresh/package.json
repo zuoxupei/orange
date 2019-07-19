@@ -1,6 +1,6 @@
 {
   "name": "orange-swiper-refresh",
-  "version": "0.1.0",
+  "version": "0.1.19",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -9,12 +9,12 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "normalize.css": "^8.0.1",
+    "postcss-px-to-viewport": "^1.1.0",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
-    "vue-property-decorator": "^8.1.0",
-    "normalize.css": "^8.0.1",
-    "postcss-px-to-viewport": "^1.1.0"
+    "vue-property-decorator": "^8.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
@@ -22,7 +22,7 @@
     "@vue/cli-plugin-typescript": "^3.8.0",
     "@vue/cli-service": "^3.8.0",
     "lint-staged": "^8.1.5",
-    "og-cli": "^0.1.18",
+    "og-cli": "^0.1.19",
     "pug": "^2.0.4",
     "pug-plain-loader": "^1.0.0",
     "sass": "^1.21.0",
