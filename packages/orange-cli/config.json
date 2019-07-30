@@ -1,0 +1,46 @@
+{
+  "form": [
+    {
+      "name": "活动名称",
+      "key": "activityName",
+      "itemType": "input",
+      "dataType":"string",
+      "required": true
+    },
+    {
+      "name": "活动时间",
+      "key": "timeRange",
+      "itemType": "date",
+      "type":"datetime",
+      "default":"[]",
+      "dataType":"Array",
+      "required": true
+    },
+    {
+      "name": "渠道",
+      "key": "clientType",
+      "itemType": "select",
+      "dataType":"string",
+      "optionValue":[
+        {
+          "value":"1",
+          "label":"app"
+        },
+        {
+          "value":"2",
+          "label":"小程序"
+        }
+      ]
+    }
+  ],
+  "grid": [
+    {
+      "name": "活动时间",
+      "key": "activityTime"
+    },
+    {
+      "name": "起止时间",
+      "key": "time"
+    }
+  ]
+}

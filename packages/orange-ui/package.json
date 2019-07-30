@@ -1,0 +1,11 @@
+{
+  "name": "orange-ui",
+  "version": "0.1.18",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zuoxupei",
+  "license": "ISC"
+}

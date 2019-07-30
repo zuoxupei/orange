@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+const program = require('commander');
+const pkg = require('../package.json');
+const vueHelp = require('../dist/create/vueCreate').default
+
+program
+.command('vue')
+.alias('v')
+.option('-n,--name <name>','组件名称')
+.option('-c,--config <config>','配置组件的json路径')
+.option('-t,--ts','use typescript')
+.option('-p,--pug','use pug')
+.option('-s,--style <style>','scss,less','scss')
+.description('new component')
+.action(({name,config,ts,pug,style})=>{
+  const vc = new vueHelp({name,ts,config,pug,css:style,projectDir:process.cwd()});
+  vc.createComponent();
+})
+
+program
+.command('react')
+.alias('r')
+.option('-n,--name <name>','组件名称')
+.option('-t,--ts','use typescript')
+.description('new component')
+.action(({name,ts,pug})=>{
+  // cli.reactComponentCreate({name,ts,pug});
+})
+
+
+program.version(pkg.version).parse(process.argv)
