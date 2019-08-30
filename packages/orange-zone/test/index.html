@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>test</title>
+</head>
+<script src="../index.min.js"></script>
+<script>
+  console.log(window.orange,"11");
+  const orange = window.orange;
+  Window.prototype.setTimeout = ()=>{
+    console.log('111111')
+  }
+  setTimeout(()=>{
+    console.log("********")
+  },1000)
+</script>
+</body>
+</html>

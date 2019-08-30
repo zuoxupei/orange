@@ -2,7 +2,7 @@
   "name": "og-cli",
   "version": "0.1.19",
   "description": "orange-cli",
-  "main": "index.js",
+  "main": "dist/index.js",
   "bin": {
     "orange": "bin/orange"
   },

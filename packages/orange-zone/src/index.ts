@@ -1,5 +1,7 @@
 import { zoneAwareAddEventListener } from "./core/zoneAwareAddEventListener";
+import { patchTimeout } from "./core/patchTimeout";
 
-const zoneInit=()=>{
-  (window as any).prototype.addEventListener = zoneAwareAddEventListener
+export const zoneInit=()=>{
+  Window.prototype.addEventListener = zoneAwareAddEventListener;
+  Window.prototype.setTimeout = patchTimeout;
 }
