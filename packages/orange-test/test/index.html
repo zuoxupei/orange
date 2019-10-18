@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>0077</title>
+</head>
+<body style="background:white">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="../index.min.js"></script>
+<script>
+  // 补充rem相关配置，所有屏幕宽度为3.75rem, 相当于原先的100px写成rem后是1rem;
+  window.__eventBus = new window.Vue();
+  document.documentElement.style.fontSize = "".concat(document.body.clientWidth / 375 * 100, "px");
+
+  window.onresize = function () {
+    document.documentElement.style.fontSize = "".concat(document.body.clientWidth / 375 * 100, "px");
+  };
+</script>
+  <div id="app"></div>
+<script>
+  "use strict";
+  window.__eventBus = new window.Vue();
+  document.documentElement.style.fontSize = "".concat(document.body.clientWidth / 375 * 100, "px");
+
+  window.onresize = function () {
+    document.documentElement.style.fontSize = "".concat(document.body.clientWidth / 375 * 100, "px");
+  };
+  window.addEventListener('load', function () {
+    new Vue({
+      el: '#app',
+      template:"<div><Zone></Zone></div>",
+    });
+  })
+
+</script>
+</body>
+</html>
